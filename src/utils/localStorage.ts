@@ -1,6 +1,6 @@
-import { UserRole, FormData } from '../types';
+import { type UserRole, type FormData } from "../types";
 
-const DRAFT_KEY_PREFIX = 'draft_';
+const DRAFT_KEY_PREFIX = "draft_";
 
 /**
  * Get the localStorage key for a specific role
@@ -17,7 +17,7 @@ export function saveDraft(role: UserRole, data: FormData): void {
     const key = getDraftKey(role);
     localStorage.setItem(key, JSON.stringify(data));
   } catch (error) {
-    console.error('Failed to save draft to localStorage:', error);
+    console.error("Failed to save draft to localStorage:", error);
   }
 }
 
@@ -31,7 +31,7 @@ export function loadDraft(role: UserRole): FormData | null {
     if (!data) return null;
     return JSON.parse(data) as FormData;
   } catch (error) {
-    console.error('Failed to load draft from localStorage:', error);
+    console.error("Failed to load draft from localStorage:", error);
     return null;
   }
 }
@@ -44,7 +44,7 @@ export function clearDraft(role: UserRole): void {
     const key = getDraftKey(role);
     localStorage.removeItem(key);
   } catch (error) {
-    console.error('Failed to clear draft from localStorage:', error);
+    console.error("Failed to clear draft from localStorage:", error);
   }
 }
 
@@ -56,7 +56,7 @@ export function hasDraft(role: UserRole): boolean {
     const key = getDraftKey(role);
     return localStorage.getItem(key) !== null;
   } catch (error) {
-    console.error('Failed to check draft in localStorage:', error);
+    console.error("Failed to check draft in localStorage:", error);
     return false;
   }
 }

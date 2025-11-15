@@ -1,7 +1,7 @@
-import { useEffect, useRef, useCallback } from 'react';
-import { UserRole, FormData } from '../types';
-import { saveDraft, loadDraft, clearDraft } from '../utils/localStorage';
-import { debounce } from '../utils/debounce';
+import { useEffect, useRef, useCallback } from "react";
+import { type UserRole, type FormData } from "../types";
+import { saveDraft, loadDraft, clearDraft } from "../utils/localStorage";
+import { debounce } from "../utils/debounce";
 
 const AUTO_SAVE_DELAY = 2000; // 2 seconds
 
