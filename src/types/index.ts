@@ -29,3 +29,15 @@ export interface Location {
   id: number;
   name: string;
 }
+
+export interface Employee {
+  employeeId: string;
+  fullName: string;
+  email: string;
+  department: string;
+  role: string;
+  officeLocation?: string;
+  employmentType?: string;
+  photo?: string;
+  notes?: string;
+}

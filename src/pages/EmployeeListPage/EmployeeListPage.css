@@ -1,0 +1,388 @@
+.employee-list-page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+.employee-list-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.employee-list-title {
+  font-size: 28px;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin: 0;
+}
+
+.btn-add-employee {
+  background-color: #4f46e5;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 14px;
+  transition: background-color 0.2s;
+}
+
+.btn-add-employee:hover {
+  background-color: #4338ca;
+}
+
+.btn-add-first {
+  background-color: #4f46e5;
+  color: white;
+  padding: 12px 24px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 14px;
+  transition: background-color 0.2s;
+  display: inline-block;
+}
+
+.btn-add-first:hover {
+  background-color: #4338ca;
+}
+
+/* Loading and Error States */
+.employee-list-loading,
+.employee-list-error {
+  text-align: center;
+  padding: 48px 24px;
+}
+
+.employee-list-loading {
+  color: #6b7280;
+  font-size: 16px;
+}
+
+.employee-list-error {
+  color: #dc2626;
+}
+
+.employee-list-error p {
+  margin-bottom: 16px;
+  font-size: 16px;
+}
+
+.retry-btn {
+  background-color: #4f46e5;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  font-weight: 500;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.retry-btn:hover {
+  background-color: #4338ca;
+}
+
+/* Empty State */
+.employee-list-empty {
+  text-align: center;
+  padding: 48px 24px;
+}
+
+.employee-list-empty p {
+  color: #6b7280;
+  font-size: 16px;
+  margin-bottom: 16px;
+}
+
+/* Info Text */
+.employee-list-info {
+  color: #6b7280;
+  font-size: 14px;
+  margin-bottom: 16px;
+}
+
+/* Desktop Table View */
+.employee-list-table-wrapper {
+  overflow-x: auto;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  margin-bottom: 24px;
+}
+
+.employee-list-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.employee-list-table thead {
+  background-color: #f9fafb;
+  border-bottom: 2px solid #e5e7eb;
+}
+
+.employee-list-table th {
+  padding: 12px 16px;
+  text-align: left;
+  font-weight: 600;
+  font-size: 14px;
+  color: #374151;
+}
+
+.employee-list-table tbody tr {
+  border-bottom: 1px solid #e5e7eb;
+  transition: background-color 0.2s;
+}
+
+.employee-list-table tbody tr:hover {
+  background-color: #f9fafb;
+}
+
+.employee-list-table tbody tr:last-child {
+  border-bottom: none;
+}
+
+.employee-list-table td {
+  padding: 16px;
+  font-size: 14px;
+  color: #1f2937;
+}
+
+/* Photo Styling */
+.employee-photo {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.employee-photo-placeholder {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background-color: #e5e7eb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 18px;
+  color: #6b7280;
+}
+
+.employee-name {
+  font-weight: 500;
+  color: #1f2937;
+  margin-bottom: 4px;
+}
+
+.employee-email {
+  font-size: 13px;
+  color: #6b7280;
+}
+
+/* Mobile Card View - Hidden on Desktop */
+.employee-list-cards {
+  display: none;
+}
+
+/* Pagination */
+.employee-list-pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  margin-top: 24px;
+}
+
+.pagination-btn {
+  padding: 8px 16px;
+  border: 1px solid #d1d5db;
+  background-color: white;
+  color: #374151;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.pagination-btn:hover:not(:disabled) {
+  background-color: #f9fafb;
+  border-color: #9ca3af;
+}
+
+.pagination-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.pagination-numbers {
+  display: flex;
+  gap: 4px;
+}
+
+.pagination-number {
+  padding: 8px 12px;
+  border: 1px solid #d1d5db;
+  background-color: white;
+  color: #374151;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  min-width: 40px;
+}
+
+.pagination-number:hover {
+  background-color: #f9fafb;
+  border-color: #9ca3af;
+}
+
+.pagination-number.active {
+  background-color: #4f46e5;
+  color: white;
+  border-color: #4f46e5;
+}
+
+/* Tablet and Mobile Responsiveness */
+@media (max-width: 768px) {
+  .employee-list-page {
+    padding: 16px;
+  }
+
+  .employee-list-title {
+    font-size: 24px;
+  }
+
+  /* Hide desktop table on mobile */
+  .employee-list-table-wrapper {
+    display: none;
+  }
+
+  /* Show mobile cards */
+  .employee-list-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+
+  .employee-card {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    padding: 16px;
+  }
+
+  .employee-card-header {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 16px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid #e5e7eb;
+  }
+
+  .employee-card-photo {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+  }
+
+  .employee-card-photo-placeholder {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background-color: #e5e7eb;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 20px;
+    color: #6b7280;
+    flex-shrink: 0;
+  }
+
+  .employee-card-info {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .employee-card-name {
+    font-weight: 500;
+    color: #1f2937;
+    margin-bottom: 4px;
+    font-size: 16px;
+  }
+
+  .employee-card-email {
+    font-size: 14px;
+    color: #6b7280;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .employee-card-details {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .employee-card-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+  }
+
+  .employee-card-row .label {
+    font-weight: 500;
+    color: #6b7280;
+    font-size: 14px;
+  }
+
+  .employee-card-row .value {
+    color: #1f2937;
+    font-size: 14px;
+    text-align: right;
+  }
+
+  /* Simplify pagination on mobile */
+  .pagination-numbers {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
+
+/* Small mobile devices */
+@media (max-width: 360px) {
+  .employee-list-page {
+    padding: 12px;
+  }
+
+  .employee-list-header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .btn-add-employee {
+    text-align: center;
+  }
+
+  .pagination-btn {
+    padding: 6px 12px;
+    font-size: 13px;
+  }
+
+  .pagination-number {
+    padding: 6px 10px;
+    font-size: 13px;
+    min-width: 36px;
+  }
+}

@@ -3,6 +3,7 @@ import { useSearchParams } from "react-router-dom";
 import { type UserRole, type FormData } from "../../types";
 import { useDraftAutoSave } from "../../hooks/useDraftAutoSave";
 import Step1 from "./Step1";
+import Step2 from "./Step2";
 import "./WizardPage.css";
 
 function WizardPage() {
@@ -36,6 +37,14 @@ function WizardPage() {
 
   const handleStep1Next = () => {
     setCurrentStep(2);
+  };
+
+  const handleStep2Change = (data: FormData["details"]) => {
+    setFormData((prev) => ({ ...prev, details: data }));
+  };
+
+  const handleStep2Back = () => {
+    setCurrentStep(1);
   };
 
   const handleClearDraft = () => {
@@ -100,18 +109,14 @@ function WizardPage() {
       )}
 
       {currentStep === 2 && (
-        <div className="wizard-placeholder">
-          <p>Step 2 will be implemented in the next phase</p>
-          {role === "admin" && (
-            <button
-              type="button"
-              className="wizard-page__back-btn"
-              onClick={() => setCurrentStep(1)}
-            >
-              Back to Step 1
-            </button>
-          )}
-        </div>
+        <Step2
+          formData={formData.details}
+          basicInfo={formData.basicInfo}
+          onChange={handleStep2Change}
+          onBack={role === "admin" ? handleStep2Back : undefined}
+          role={role}
+          onClearDraft={clearCurrentDraft}
+        />
       )}
     </div>
   );

@@ -48,6 +48,29 @@ export async function fetchBasicInfo() {
 }
 
 /**
+ * Fetch basic info with pagination
+ */
+export async function fetchBasicInfoPaginated(page: number = 1, limit: number = 10) {
+  const url = new URL(`${API_BASE_URL_STEP1}/basicInfo`);
+  url.searchParams.append('_page', page.toString());
+  url.searchParams.append('_limit', limit.toString());
+
+  const response = await fetch(url.toString());
+  if (!response.ok) {
+    throw new Error('Failed to fetch basic info');
+  }
+
+  // json-server returns total count in headers
+  const total = response.headers.get('X-Total-Count');
+  const data = await response.json();
+
+  return {
+    data,
+    total: total ? parseInt(total, 10) : data.length,
+  };
+}
+
+/**
  * Post basic info data (Step 1)
  */
 export async function postBasicInfo(data: unknown) {
@@ -88,12 +111,30 @@ export async function postDetails(data: unknown) {
 /**
  * Fetch details with pagination
  */
-export async function fetchDetails(page: number = 1, limit: number = 10) {
+export async function fetchDetailsPaginated(page: number = 1, limit: number = 10) {
   const url = new URL(`${API_BASE_URL_STEP2}/details`);
   url.searchParams.append('_page', page.toString());
   url.searchParams.append('_limit', limit.toString());
 
   const response = await fetch(url.toString());
+  if (!response.ok) {
+    throw new Error('Failed to fetch details');
+  }
+
+  const total = response.headers.get('X-Total-Count');
+  const data = await response.json();
+
+  return {
+    data,
+    total: total ? parseInt(total, 10) : data.length,
+  };
+}
+
+/**
+ * Fetch all details (no pagination)
+ */
+export async function fetchAllDetails() {
+  const response = await fetch(`${API_BASE_URL_STEP2}/details`);
   if (!response.ok) {
     throw new Error('Failed to fetch details');
   }
