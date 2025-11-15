@@ -1,0 +1,135 @@
+/* FileUpload Component */
+.file-upload {
+  margin-bottom: 1.5rem;
+}
+
+.file-upload__label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  color: #213547;
+  font-size: 0.9rem;
+}
+
+.file-upload__input {
+  display: none;
+}
+
+.file-upload__dropzone {
+  border: 2px dashed #ddd;
+  border-radius: 8px;
+  padding: 2rem;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s;
+  background-color: #fafafa;
+}
+
+.file-upload__dropzone:hover {
+  border-color: #646cff;
+  background-color: #f5f5ff;
+}
+
+.file-upload__dropzone--dragging {
+  border-color: #646cff;
+  background-color: #e8eaff;
+}
+
+.file-upload__dropzone:focus {
+  outline: none;
+  border-color: #646cff;
+  box-shadow: 0 0 0 3px rgba(100, 108, 255, 0.1);
+}
+
+.file-upload__dropzone-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.file-upload__icon {
+  width: 48px;
+  height: 48px;
+  color: #888;
+}
+
+.file-upload__text {
+  margin: 0;
+  color: #555;
+  font-size: 0.95rem;
+}
+
+.file-upload__text-primary {
+  color: #646cff;
+  font-weight: 500;
+}
+
+.file-upload__hint {
+  margin: 0;
+  font-size: 0.85rem;
+  color: #888;
+}
+
+.file-upload__preview {
+  position: relative;
+  display: inline-block;
+  max-width: 100%;
+}
+
+.file-upload__preview-image {
+  max-width: 100%;
+  max-height: 300px;
+  border-radius: 8px;
+  border: 2px solid #ddd;
+  display: block;
+}
+
+.file-upload__remove-btn {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  width: 32px;
+  height: 32px;
+  border: none;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+  font-size: 1.2rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s;
+}
+
+.file-upload__remove-btn:hover {
+  background-color: rgba(0, 0, 0, 0.9);
+}
+
+.file-upload__remove-btn:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(100, 108, 255, 0.3);
+}
+
+.file-upload__error {
+  margin-top: 0.5rem;
+  font-size: 0.85rem;
+  color: #e74c3c;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .file-upload__dropzone {
+    padding: 1.5rem;
+  }
+
+  .file-upload__icon {
+    width: 40px;
+    height: 40px;
+  }
+
+  .file-upload__preview-image {
+    max-height: 200px;
+  }
+}
