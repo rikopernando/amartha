@@ -2,48 +2,48 @@
 .wizard-page {
   max-width: 900px;
   margin: 0 auto;
-  padding: 2rem 1rem;
+  padding: var(--spacing-xl) var(--spacing-md);
 }
 
 .wizard-page__header {
   text-align: center;
-  margin-bottom: 2rem;
+  margin-bottom: var(--spacing-xl);
 }
 
 .wizard-page__title {
-  font-size: 2rem;
-  color: #213547;
-  margin-bottom: 1rem;
+  font-size: var(--font-size-4xl);
+  color: var(--color-text-heading);
+  margin-bottom: var(--spacing-md);
 }
 
 .wizard-page__role-badge {
   display: inline-block;
-  padding: 0.5rem 1rem;
-  background-color: #e8eaff;
-  color: #646cff;
-  border-radius: 20px;
-  font-size: 0.9rem;
+  padding: var(--spacing-sm) var(--spacing-md);
+  background-color: var(--color-primary-light);
+  color: var(--color-secondary);
+  border-radius: var(--radius-full);
+  font-size: var(--font-size-sm);
 }
 
 .wizard-page__controls {
   display: flex;
   justify-content: flex-end;
-  margin-bottom: 1.5rem;
+  margin-bottom: var(--spacing-lg);
 }
 
 .wizard-page__clear-draft {
-  padding: 0.5rem 1rem;
+  padding: var(--spacing-sm) var(--spacing-md);
   background-color: transparent;
-  color: #e74c3c;
-  border: 1px solid #e74c3c;
-  border-radius: 4px;
-  font-size: 0.9rem;
+  color: var(--color-error);
+  border: 1px solid var(--color-error);
+  border-radius: var(--radius-sm);
+  font-size: var(--font-size-sm);
   cursor: pointer;
-  transition: all 0.2s;
+  transition: all var(--transition-base);
 }
 
 .wizard-page__clear-draft:hover {
-  background-color: #e74c3c;
+  background-color: var(--color-error);
   color: white;
 }
 
@@ -51,91 +51,91 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 2rem;
-  gap: 0.5rem;
+  margin-bottom: var(--spacing-xl);
+  gap: var(--spacing-sm);
 }
 
 .wizard-page__step-dot {
   width: 40px;
   height: 40px;
-  border-radius: 50%;
+  border-radius: var(--radius-full);
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #e0e0e0;
-  color: #888;
-  font-weight: 600;
-  font-size: 1rem;
-  transition: all 0.3s;
+  background-color: var(--color-border-primary);
+  color: var(--color-text-tertiary);
+  font-weight: var(--font-weight-semibold);
+  font-size: var(--font-size-base);
+  transition: all var(--transition-slow);
 }
 
 .wizard-page__step-dot.active {
-  background-color: #646cff;
+  background-color: var(--color-secondary);
   color: white;
   transform: scale(1.1);
 }
 
 .wizard-page__step-dot.completed {
-  background-color: #27ae60;
+  background-color: var(--color-success);
   color: white;
 }
 
 .wizard-page__step-line {
   width: 60px;
   height: 2px;
-  background-color: #e0e0e0;
+  background-color: var(--color-border-primary);
 }
 
 .wizard-page__back-btn {
-  padding: 0.75rem 1.5rem;
+  padding: 0.75rem var(--spacing-lg);
   background-color: transparent;
-  color: #646cff;
-  border: 1px solid #646cff;
-  border-radius: 4px;
-  font-size: 1rem;
+  color: var(--color-secondary);
+  border: 1px solid var(--color-secondary);
+  border-radius: var(--radius-sm);
+  font-size: var(--font-size-base);
   cursor: pointer;
-  transition: all 0.2s;
-  margin-top: 1rem;
+  transition: all var(--transition-base);
+  margin-top: var(--spacing-md);
 }
 
 .wizard-page__back-btn:hover {
-  background-color: #646cff;
+  background-color: var(--color-secondary);
   color: white;
 }
 
 /* Placeholder (to be replaced with Step 2) */
 .wizard-placeholder {
-  background-color: #f9f9f9;
-  border: 2px dashed #ddd;
-  padding: 3rem 2rem;
-  border-radius: 8px;
+  background-color: var(--color-bg-secondary);
+  border: 2px dashed var(--color-border-secondary);
+  padding: var(--spacing-2xl) var(--spacing-xl);
+  border-radius: var(--radius-lg);
   text-align: center;
-  color: #888;
+  color: var(--color-text-tertiary);
 }
 
 .wizard-placeholder p {
-  margin: 0 0 1rem 0;
-  font-size: 1.1rem;
+  margin: 0 0 var(--spacing-md) 0;
+  font-size: var(--font-size-lg);
 }
 
 /* Responsive */
 @media (max-width: 768px) {
   .wizard-page {
-    padding: 1rem 0.5rem;
+    padding: var(--spacing-md) var(--spacing-sm);
   }
 
   .wizard-page__title {
-    font-size: 1.5rem;
+    font-size: var(--font-size-3xl);
   }
 
   .wizard-page__steps-indicator {
-    margin-bottom: 1.5rem;
+    margin-bottom: var(--spacing-lg);
   }
 
   .wizard-page__step-dot {
     width: 35px;
     height: 35px;
-    font-size: 0.9rem;
+    font-size: var(--font-size-sm);
   }
 
   .wizard-page__step-line {

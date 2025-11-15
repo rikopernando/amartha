@@ -1,72 +1,38 @@
-/* Layout */
+/* ==========================================
+   App Layout
+   ========================================== */
+
 #root {
-  max-width: 1440px;
+  max-width: var(--breakpoint-xl);
   margin: 0 auto;
-  padding: 2rem;
+  padding: var(--spacing-xl);
   min-height: 100vh;
 }
 
-/* Pages */
-.wizard-page,
-.employee-list-page {
-  text-align: left;
-  max-width: 800px;
-  margin: 0 auto;
+/* ==========================================
+   Responsive Layout
+   ========================================== */
+
+@media (max-width: 1024px) {
+  #root {
+    padding: var(--spacing-lg);
+  }
 }
 
-.wizard-page h1,
-.employee-list-page h1 {
-  margin-bottom: 1.5rem;
-  color: #213547;
-}
-
-/* Wizard Info */
-.wizard-info {
-  background-color: #f0f0f0;
-  padding: 1rem;
-  border-radius: 8px;
-  margin-bottom: 1.5rem;
-}
-
-.wizard-info p {
-  margin: 0;
-  color: #555;
-}
-
-.wizard-placeholder,
-.employee-list-placeholder {
-  background-color: #f9f9f9;
-  border: 2px dashed #ddd;
-  padding: 2rem;
-  border-radius: 8px;
-  text-align: center;
-  color: #888;
-  margin-top: 1.5rem;
-}
-
-/* Employee List Actions */
-.employee-list-actions {
-  margin-bottom: 1.5rem;
-}
-
-.btn-add-employee {
-  display: inline-block;
-  padding: 0.75rem 1.5rem;
-  background-color: #646cff;
-  color: white;
-  text-decoration: none;
-  border-radius: 8px;
-  font-weight: 500;
-  transition: background-color 0.25s;
-}
-
-.btn-add-employee:hover {
-  background-color: #535bf2;
-}
-
-/* Responsive */
 @media (max-width: 768px) {
   #root {
-    padding: 1rem;
+    padding: var(--spacing-md);
+  }
+}
+
+@media (max-width: 480px) {
+  #root {
+    padding: var(--spacing-sm);
+  }
+}
+
+@media (max-width: 360px) {
+  #root {
+    padding: var(--spacing-xs) var(--spacing-sm);
   }
 }
