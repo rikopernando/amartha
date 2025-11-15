@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  api-step1:
+    image: node:20-alpine
+    working_dir: /app
+    volumes:
+      - ./:/app
+    ports:
+      - "4001:4001"
+    command: npx json-server db-step1.json --port 4001 --host 0.0.0.0
+    networks:
+      - api-network
+
+  api-step2:
+    image: node:20-alpine
+    working_dir: /app
+    volumes:
+      - ./:/app
+    ports:
+      - "4002:4002"
+    command: npx json-server db-step2.json --port 4002 --host 0.0.0.0
+    networks:
+      - api-network
+
+networks:
+  api-network:
+    driver: bridge
