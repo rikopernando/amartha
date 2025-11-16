@@ -51,6 +51,7 @@
 
 .btn-add-first:hover {
   background-color: var(--color-primary-hover);
+  color: white;
 }
 
 /* Loading and Error States */

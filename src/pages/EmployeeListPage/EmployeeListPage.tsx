@@ -27,9 +27,7 @@ function EmployeeListPage() {
       // Merge data by email or employeeId
       const merged = basicInfoList.map((basic) => {
         const detail = detailsList.find(
-          (d: Details & { email?: string }) =>
-            d.email === basic.email ||
-            (d as { employeeId?: string }).employeeId === basic.employeeId
+          (d: Details & { email?: string }) => d.email === basic.email
         );
 
         return {
@@ -137,7 +135,9 @@ function EmployeeListPage() {
                         />
                       ) : (
                         <div className="employee-photo-placeholder">
-                          {employee.fullName?.charAt(0)?.toUpperCase() ?? "-"}
+                          {employee.fullName
+                            ? employee.fullName?.charAt(0)?.toUpperCase()
+                            : "A"}
                         </div>
                       )}
                     </td>
@@ -172,7 +172,9 @@ function EmployeeListPage() {
                     />
                   ) : (
                     <div className="employee-card-photo-placeholder">
-                      {employee.fullName.charAt(0).toUpperCase() ?? "-"}
+                      {employee.fullName
+                        ? employee.fullName?.charAt(0)?.toUpperCase()
+                        : "A"}
                     </div>
                   )}
                   <div className="employee-card-info">
