@@ -1,7 +1,8 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { type UserRole, type FormData } from "../../types";
 import { useDraftAutoSave } from "../../hooks/useDraftAutoSave";
+import { loadDraft } from "../../utils/localStorage";
 import Step1 from "./Step1";
 import Step2 from "./Step2";
 import "./WizardPage.css";
@@ -11,25 +12,17 @@ function WizardPage() {
   const role = (searchParams.get("role") || "admin") as UserRole;
 
   const [currentStep, setCurrentStep] = useState(role === "admin" ? 1 : 2);
-  const [formData, setFormData] = useState<FormData>({
-    basicInfo: {},
-    details: {},
+  const [formData, setFormData] = useState<FormData>(() => {
+    const savedDraft = loadDraft(role);
+    return savedDraft || { basicInfo: {}, details: {} };
   });
 
   // Draft auto-save with 2-second debounce
-  const { clearCurrentDraft, loadSavedDraft } = useDraftAutoSave({
+  const { clearCurrentDraft } = useDraftAutoSave({
     role,
     formData,
     enabled: true,
   });
-
-  // Load saved draft on mount
-  useEffect(() => {
-    const savedDraft = loadSavedDraft();
-    if (savedDraft) {
-      setFormData(savedDraft);
-    }
-  }, []);
 
   const handleStep1Change = (data: FormData["basicInfo"]) => {
     setFormData((prev) => ({ ...prev, basicInfo: data }));
@@ -77,27 +70,25 @@ function WizardPage() {
         </button>
       </div>
 
-      <div className="wizard-page__steps-indicator">
-        {role === "admin" && (
-          <>
-            <div
-              className={`wizard-page__step-dot ${
-                currentStep === 1 ? "active" : ""
-              } ${currentStep > 1 ? "completed" : ""}`}
-            >
-              1
-            </div>
-            <div className="wizard-page__step-line" />
-          </>
-        )}
-        <div
-          className={`wizard-page__step-dot ${
-            currentStep === 2 ? "active" : ""
-          }`}
-        >
-          2
+      {role === "admin" && (
+        <div className="wizard-page__steps-indicator">
+          <div
+            className={`wizard-page__step-dot ${
+              currentStep === 1 ? "active" : ""
+            } ${currentStep > 1 ? "completed" : ""}`}
+          >
+            1
+          </div>
+          <div className="wizard-page__step-line" />
+          <div
+            className={`wizard-page__step-dot ${
+              currentStep === 2 ? "active" : ""
+            }`}
+          >
+            2
+          </div>
         </div>
-      </div>
+      )}
 
       {currentStep === 1 && role === "admin" && (
         <Step1

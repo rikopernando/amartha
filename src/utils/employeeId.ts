@@ -26,7 +26,7 @@ export function countEmployeesByDepartment(
   departmentName: string
 ): number {
   return allEmployees.filter(
-    (emp) => emp.department.toLowerCase() === departmentName.toLowerCase()
+    (emp) => emp?.department?.toLowerCase() === departmentName?.toLowerCase()
   ).length;
 }
 

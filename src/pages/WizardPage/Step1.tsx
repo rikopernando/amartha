@@ -20,7 +20,7 @@ const ROLE_OPTIONS = [
   { value: "Finance", label: "Finance" },
 ];
 
-function Step1({ formData, onChange, onNext, role }: Step1Props) {
+function Step1({ formData, onChange, onNext }: Step1Props) {
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [touched, setTouched] = useState<Record<string, boolean>>({});
 
@@ -34,7 +34,7 @@ function Step1({ formData, onChange, onNext, role }: Step1Props) {
     if (generatedId && generatedId !== formData.employeeId) {
       onChange({ ...formData, employeeId: generatedId });
     }
-  }, [generatedId]);
+  }, [formData.employeeId, generatedId]);
 
   const handleFieldChange = (field: keyof BasicInfo, value: string) => {
     const updatedData = { ...formData, [field]: value };

@@ -44,6 +44,7 @@ export function useEmployeeId(
         const newId = generateEmployeeId(departmentName, count);
         setEmployeeId(newId);
       } catch (err) {
+        console.error("err", err);
         setError(
           err instanceof Error ? err.message : "Failed to generate employee ID"
         );

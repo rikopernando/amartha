@@ -1,15 +1,15 @@
-import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { type Employee, type BasicInfo, type Details } from '../../types';
-import { fetchBasicInfo, fetchAllDetails } from '../../utils/api';
-import './EmployeeListPage.css';
+import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import { type Employee, type BasicInfo, type Details } from "../../types";
+import { fetchBasicInfo, fetchAllDetails } from "../../utils/api";
+import "./EmployeeListPage.css";
 
+const itemsPerPage = 10;
 function EmployeeListPage() {
   const [employees, setEmployees] = useState<Employee[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 10;
 
   useEffect(() => {
     loadEmployees();
@@ -21,16 +21,15 @@ function EmployeeListPage() {
 
     try {
       // Fetch from both endpoints
-      const [basicInfoList, detailsList]: [BasicInfo[], Details[]] = await Promise.all([
-        fetchBasicInfo(),
-        fetchAllDetails(),
-      ]);
+      const [basicInfoList, detailsList]: [BasicInfo[], Details[]] =
+        await Promise.all([fetchBasicInfo(), fetchAllDetails()]);
 
       // Merge data by email or employeeId
       const merged = basicInfoList.map((basic) => {
         const detail = detailsList.find(
           (d: Details & { email?: string }) =>
-            d.email === basic.email || (d as { employeeId?: string }).employeeId === basic.employeeId
+            d.email === basic.email ||
+            (d as { employeeId?: string }).employeeId === basic.employeeId
         );
 
         return {
@@ -48,7 +47,7 @@ function EmployeeListPage() {
 
       setEmployees(merged);
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Failed to load employees');
+      setError(err instanceof Error ? err.message : "Failed to load employees");
     } finally {
       setIsLoading(false);
     }
@@ -62,11 +61,11 @@ function EmployeeListPage() {
 
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   const getPlaceholder = (value: string | undefined) => {
-    return value || '—';
+    return value || "—";
   };
 
   if (isLoading) {
@@ -109,8 +108,8 @@ function EmployeeListPage() {
       ) : (
         <>
           <div className="employee-list-info">
-            Showing {startIndex + 1}-{Math.min(endIndex, employees.length)} of {employees.length}{' '}
-            employees
+            Showing {startIndex + 1}-{Math.min(endIndex, employees.length)} of{" "}
+            {employees.length} employees
           </div>
 
           {/* Desktop Table View */}
@@ -127,7 +126,7 @@ function EmployeeListPage() {
                 </tr>
               </thead>
               <tbody>
-                {currentEmployees.map((employee) => (
+                {currentEmployees?.map((employee) => (
                   <tr key={employee.employeeId}>
                     <td>
                       {employee.photo ? (
@@ -138,16 +137,20 @@ function EmployeeListPage() {
                         />
                       ) : (
                         <div className="employee-photo-placeholder">
-                          {employee.fullName.charAt(0).toUpperCase()}
+                          {employee.fullName?.charAt(0)?.toUpperCase() ?? "-"}
                         </div>
                       )}
                     </td>
                     <td>
-                      <div className="employee-name">{employee.fullName}</div>
-                      <div className="employee-email">{employee.email}</div>
+                      <div className="employee-name">
+                        {employee.fullName ?? "-"}
+                      </div>
+                      <div className="employee-email">
+                        {employee.email ?? "-"}
+                      </div>
                     </td>
-                    <td>{employee.department}</td>
-                    <td>{employee.role}</td>
+                    <td>{employee.department ?? "-"}</td>
+                    <td>{employee.role ?? "-"}</td>
                     <td>{getPlaceholder(employee.officeLocation)}</td>
                     <td>{getPlaceholder(employee.employmentType)}</td>
                   </tr>
@@ -169,30 +172,38 @@ function EmployeeListPage() {
                     />
                   ) : (
                     <div className="employee-card-photo-placeholder">
-                      {employee.fullName.charAt(0).toUpperCase()}
+                      {employee.fullName.charAt(0).toUpperCase() ?? "-"}
                     </div>
                   )}
                   <div className="employee-card-info">
-                    <div className="employee-card-name">{employee.fullName}</div>
-                    <div className="employee-card-email">{employee.email}</div>
+                    <div className="employee-card-name">
+                      {employee.fullName ?? "-"}
+                    </div>
+                    <div className="employee-card-email">
+                      {employee.email ?? "-"}
+                    </div>
                   </div>
                 </div>
                 <div className="employee-card-details">
                   <div className="employee-card-row">
                     <span className="label">Department:</span>
-                    <span className="value">{employee.department}</span>
+                    <span className="value">{employee.department ?? "-"}</span>
                   </div>
                   <div className="employee-card-row">
                     <span className="label">Role:</span>
-                    <span className="value">{employee.role}</span>
+                    <span className="value">{employee.role ?? "-"}</span>
                   </div>
                   <div className="employee-card-row">
                     <span className="label">Location:</span>
-                    <span className="value">{getPlaceholder(employee.officeLocation)}</span>
+                    <span className="value">
+                      {getPlaceholder(employee.officeLocation)}
+                    </span>
                   </div>
                   <div className="employee-card-row">
                     <span className="label">Employment:</span>
-                    <span className="value">{getPlaceholder(employee.employmentType)}</span>
+                    <span className="value">
+                      {getPlaceholder(employee.employmentType)}
+                    </span>
                   </div>
                 </div>
               </div>
@@ -211,15 +222,19 @@ function EmployeeListPage() {
               </button>
 
               <div className="pagination-numbers">
-                {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
-                  <button
-                    key={page}
-                    className={`pagination-number ${page === currentPage ? 'active' : ''}`}
-                    onClick={() => handlePageChange(page)}
-                  >
-                    {page}
-                  </button>
-                ))}
+                {Array.from({ length: totalPages }, (_, i) => i + 1).map(
+                  (page) => (
+                    <button
+                      key={page}
+                      className={`pagination-number ${
+                        page === currentPage ? "active" : ""
+                      }`}
+                      onClick={() => handlePageChange(page)}
+                    >
+                      {page}
+                    </button>
+                  )
+                )}
               </div>
 
               <button
