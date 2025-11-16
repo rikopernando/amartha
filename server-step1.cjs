@@ -1,12 +1,8 @@
-import jsonServer from 'json-server';
-import { fileURLToPath } from 'url';
-import { dirname, join } from 'path';
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+const jsonServer = require('json-server');
+const path = require('path');
 
 const server = jsonServer.create();
-const router = jsonServer.router(join(__dirname, 'db-step1.json'));
+const router = jsonServer.router(path.join(__dirname, 'db-step1.json'));
 const middlewares = jsonServer.defaults({
   static: './public',
 });
