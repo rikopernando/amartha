@@ -1,6 +1,6 @@
-import { useState, useEffect, useRef } from 'react';
-import { debounce } from '../../utils/debounce';
-import './Autocomplete.css';
+import { useState, useEffect, useRef } from "react";
+import { debounce } from "../../utils/debounce";
+import "./Autocomplete.css";
 
 interface AutocompleteOption {
   id: number;
@@ -23,7 +23,7 @@ function Autocomplete({
   value,
   onChange,
   fetchOptions,
-  placeholder = 'Start typing...',
+  placeholder = "Start typing...",
   error,
   required = false,
   debounceMs = 300,
@@ -33,7 +33,7 @@ function Autocomplete({
   const [isLoading, setIsLoading] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [fetchError, setFetchError] = useState<string | null>(null);
-  const wrapperRef = useRef<HTMLDivElement>(null);
+  const justSelectedRef = useRef(false);
 
   // Debounced fetch function
   const debouncedFetchRef = useRef(
@@ -52,7 +52,9 @@ function Autocomplete({
         setOptions(results);
         setIsOpen(true);
       } catch (err) {
-        setFetchError(err instanceof Error ? err.message : 'Failed to fetch options');
+        setFetchError(
+          err instanceof Error ? err.message : "Failed to fetch options"
+        );
         setOptions([]);
       } finally {
         setIsLoading(false);
@@ -62,6 +64,11 @@ function Autocomplete({
 
   // Fetch options when input changes
   useEffect(() => {
+    // Skip fetching if we just selected an option
+    if (justSelectedRef.current) {
+      justSelectedRef.current = false;
+      return;
+    }
     debouncedFetchRef.current(inputValue);
   }, [inputValue]);
 
@@ -70,17 +77,7 @@ function Autocomplete({
     setInputValue(value);
   }, [value]);
 
-  // Close dropdown when clicking outside
-  useEffect(() => {
-    function handleClickOutside(event: MouseEvent) {
-      if (wrapperRef.current && !wrapperRef.current.contains(event.target as Node)) {
-        setIsOpen(false);
-      }
-    }
-
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, []);
+  // Removed click-outside listener - dropdown only closes when selecting an option
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = e.target.value;
@@ -89,6 +86,7 @@ function Autocomplete({
   };
 
   const handleOptionSelect = (option: AutocompleteOption) => {
+    justSelectedRef.current = true;
     setInputValue(option.name);
     onChange(option.name);
     setIsOpen(false);
@@ -102,7 +100,7 @@ function Autocomplete({
   };
 
   return (
-    <div className="autocomplete" ref={wrapperRef}>
+    <div className="autocomplete">
       <label className="autocomplete__label">
         {label}
         {required && <span className="autocomplete__required">*</span>}
@@ -111,7 +109,9 @@ function Autocomplete({
       <div className="autocomplete__input-wrapper">
         <input
           type="text"
-          className={`autocomplete__input ${error ? 'autocomplete__input--error' : ''}`}
+          className={`autocomplete__input ${
+            error ? "autocomplete__input--error" : ""
+          }`}
           value={inputValue}
           onChange={handleInputChange}
           onFocus={handleInputFocus}
@@ -153,9 +153,13 @@ function Autocomplete({
         </ul>
       )}
 
-      {isOpen && !isLoading && inputValue.trim() && options.length === 0 && !fetchError && (
-        <div className="autocomplete__no-results">No results found</div>
-      )}
+      {isOpen &&
+        !isLoading &&
+        inputValue.trim() &&
+        options.length === 0 &&
+        !fetchError && (
+          <div className="autocomplete__no-results">No results found</div>
+        )}
     </div>
   );
 }

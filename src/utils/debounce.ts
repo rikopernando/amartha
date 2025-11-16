@@ -2,7 +2,7 @@
  * Creates a debounced function that delays invoking func until after wait milliseconds
  * have elapsed since the last time the debounced function was invoked.
  */
-export function debounce<T extends (...args: unknown[]) => void>(
+export function debounce<T extends (...args: any[]) => void | Promise<void>>(
   func: T,
   wait: number
 ): (...args: Parameters<T>) => void {
