@@ -4,11 +4,12 @@ A modern, role-based employee registration system built with React, TypeScript, 
 
 ## Live Demo
 
-**Hosted URL:** [Coming Soon - Will be deployed on Vercel/Netlify]
+**Hosted URL:** [https://amartha-virid.vercel.app/](https://amartha-virid.vercel.app/)
 
 ## Features
 
 ### Core Functionality
+
 - **Role-Based Access Control**: Admin (Step 1 + 2) and Ops (Step 2 only) with toggle UI
 - **Two-Step Wizard Form**:
   - Step 1: Basic Info (Full Name, Email, Department, Role, Employee ID)
@@ -22,6 +23,7 @@ A modern, role-based employee registration system built with React, TypeScript, 
 - **Responsive Design**: Fully responsive from 360px to 1440px
 
 ### Technical Highlights
+
 - **TypeScript**: Full type safety across the application
 - **React 19**: Latest React features with hooks
 - **Custom CSS**: BEM methodology, no CSS frameworks
@@ -80,12 +82,14 @@ amartha/
 ### Installation
 
 1. Clone the repository:
+
 ```bash
 git clone <repository-url>
 cd amartha
 ```
 
 2. Install dependencies:
+
 ```bash
 npm install
 ```
@@ -95,21 +99,27 @@ npm install
 You need to run **3 processes** simultaneously:
 
 #### Terminal 1: Frontend Dev Server
+
 ```bash
 npm run dev
 ```
+
 Access the app at: `http://localhost:5173`
 
 #### Terminal 2: Mock API Server 1 (Port 4001)
+
 ```bash
 npm run api:step1
 ```
+
 Serves: `/basicInfo`, `/departments`
 
 #### Terminal 3: Mock API Server 2 (Port 4002)
+
 ```bash
 npm run api:step2
 ```
+
 Serves: `/details`, `/locations`
 
 ### Build for Production
@@ -129,16 +139,19 @@ npm run preview
 ## Testing
 
 ### Run All Tests
+
 ```bash
 npm test
 ```
 
 ### Run Tests with UI
+
 ```bash
 npm run test:ui
 ```
 
 ### Run Tests with Coverage
+
 ```bash
 npm run test:coverage
 ```
@@ -148,6 +161,7 @@ npm run test:coverage
 The project includes **116+ tests** covering:
 
 1. **Autocomplete Component** (9 tests)
+
    - Renders correctly with label and placeholder
    - Fetches and displays options on input
    - Handles option selection
@@ -157,13 +171,15 @@ The project includes **116+ tests** covering:
    - Debounces API calls (300ms default)
 
 2. **FileUpload Component** (9 tests)
+
    - File selection and preview
    - Base64 conversion
    - File size validation
-   - File type validation (image/* only)
+   - File type validation (image/\* only)
    - Clear functionality
 
 3. **Step1 Form** (14 tests)
+
    - Form validation (email, required fields)
    - Department autocomplete integration
    - Auto-generated Employee ID
@@ -171,6 +187,7 @@ The project includes **116+ tests** covering:
    - Draft auto-save functionality
 
 4. **Step2 Form** (13 tests)
+
    - Photo upload integration
    - Location autocomplete
    - Sequential POST submission
@@ -178,6 +195,7 @@ The project includes **116+ tests** covering:
    - Success/error handling
 
 5. **Employee List Page** (10 tests)
+
    - Data fetching and merging
    - Pagination (10 items per page)
    - Empty state handling
@@ -239,6 +257,7 @@ The project includes **116+ tests** covering:
 ## Design System
 
 ### Color Palette
+
 - **Primary**: #b63f99 (Purple/Magenta)
 - **Primary Hover**: #9d3582
 - **Primary Light**: #fce8f7
@@ -247,14 +266,17 @@ The project includes **116+ tests** covering:
 - **Error**: #e74c3c
 
 ### Typography
+
 - **Font Family**: Inter (Google Fonts)
 - **Weights**: 400 (Normal), 500 (Medium), 600 (Semi-bold), 700 (Bold)
 
 ### Spacing
+
 - Based on `rem` units (0.25rem to 3rem)
 - Consistent throughout the application
 
 ### Responsive Breakpoints
+
 - **Mobile**: 360px - 480px
 - **Tablet**: 481px - 768px
 - **Desktop**: 769px - 1440px
@@ -262,11 +284,13 @@ The project includes **116+ tests** covering:
 ## API Endpoints
 
 ### Port 4001 (Step 1 Server)
+
 - `GET /departments?name_like={query}` - Search departments
 - `GET /basicInfo` - Fetch all basic info
 - `POST /basicInfo` - Submit basic info
 
 ### Port 4002 (Step 2 Server)
+
 - `GET /locations?name_like={query}` - Search locations
 - `GET /details` - Fetch all details
 - `POST /details` - Submit details
@@ -274,12 +298,14 @@ The project includes **116+ tests** covering:
 ## Known Limitations & Future Enhancements
 
 ### Current Limitations
+
 - Mock APIs reset on server restart
 - No authentication/authorization
 - No server-side validation
 - No edit/delete functionality
 
 ### Potential Enhancements
+
 - Add edit employee functionality
 - Implement search/filter in employee list
 - Add export to CSV/Excel
@@ -317,7 +343,7 @@ This project is part of a technical assignment for Amartha.
 
 ## Author
 
-[Your Name]
+Riko Pernando
 
 ## Submission Notes
 
@@ -335,6 +361,3 @@ This project was completed as part of the Amartha Frontend Developer assignment.
 - ✅ Comprehensive testing (116+ tests)
 - ✅ TypeScript throughout
 - ✅ Clean, modular architecture
-
-**Development Time**: [To be filled]
-**Total Commits**: [To be filled - should show atomic commits per feature]

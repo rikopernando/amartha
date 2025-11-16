@@ -1,5 +1,5 @@
-const API_BASE_URL_STEP1 = 'http://localhost:4001';
-const API_BASE_URL_STEP2 = 'http://localhost:4002';
+const API_BASE_URL_STEP1 = import.meta.env.VITE_API_STEP1_URL || 'http://localhost:4001';
+const API_BASE_URL_STEP2 = import.meta.env.VITE_API_STEP2_URL || 'http://localhost:4002';
 
 /**
  * Fetch departments with optional name filter

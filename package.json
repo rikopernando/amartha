@@ -12,9 +12,12 @@
     "test:ui": "vitest --ui",
     "test:coverage": "vitest --coverage",
     "api:step1": "json-server db-step1.json --port 4001",
-    "api:step2": "json-server db-step2.json --port 4002"
+    "api:step2": "json-server db-step2.json --port 4002",
+    "server:step1": "node server-step1.js",
+    "server:step2": "node server-step2.js"
   },
   "dependencies": {
+    "json-server": "^1.0.0-beta.3",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
     "react-router-dom": "^7.9.6"
@@ -34,7 +37,6 @@
     "eslint-plugin-react-refresh": "^0.4.24",
     "globals": "^16.5.0",
     "jsdom": "^27.2.0",
-    "json-server": "^1.0.0-beta.3",
     "typescript": "~5.9.3",
     "typescript-eslint": "^8.46.3",
     "vite": "^7.2.2",
