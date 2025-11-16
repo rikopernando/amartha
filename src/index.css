@@ -4,13 +4,13 @@
 
 :root {
   /* Colors - Primary */
-  --color-primary: #4f46e5;
-  --color-primary-hover: #4338ca;
-  --color-primary-light: #e8eaff;
+  --color-primary: #b63f99;
+  --color-primary-hover: #9d3582;
+  --color-primary-light: #fce8f7;
 
   /* Colors - Secondary */
-  --color-secondary: #646cff;
-  --color-secondary-hover: #535bf2;
+  --color-secondary: #d35fb8;
+  --color-secondary-hover: #c04fa5;
 
   /* Colors - Status */
   --color-success: #27ae60;
@@ -28,7 +28,7 @@
   --color-bg-primary: #ffffff;
   --color-bg-secondary: #f9fafb;
   --color-bg-tertiary: #f3f4f6;
-  --color-bg-hover: #f5f5ff;
+  --color-bg-hover: #fdf5fb;
 
   /* Colors - Borders */
   --color-border-primary: #e5e7eb;
