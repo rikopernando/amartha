@@ -43,7 +43,7 @@ describe('EmployeeListPage', () => {
 
     const addButton = screen.getByText('+ Add Employee');
     expect(addButton).toBeInTheDocument();
-    expect(addButton).toHaveAttribute('href', '/wizard?role=admin');
+    expect(addButton).toHaveAttribute('href', '/wizard');
   });
 
   it('should show loading state initially', () => {

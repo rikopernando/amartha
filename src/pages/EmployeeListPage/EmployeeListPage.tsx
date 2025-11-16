@@ -93,7 +93,7 @@ function EmployeeListPage() {
     <div className="employee-list-page">
       <div className="employee-list-header">
         <h1 className="employee-list-title">Employee List</h1>
-        <Link to="/wizard?role=admin" className="btn-add-employee">
+        <Link to="/wizard" className="btn-add-employee">
           + Add Employee
         </Link>
       </div>
@@ -101,7 +101,7 @@ function EmployeeListPage() {
       {employees.length === 0 ? (
         <div className="employee-list-empty">
           <p>No employees found. Add your first employee!</p>
-          <Link to="/wizard?role=admin" className="btn-add-first">
+          <Link to="/wizard" className="btn-add-first">
             + Add Employee
           </Link>
         </div>

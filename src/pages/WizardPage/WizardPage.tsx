@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { useSearchParams } from "react-router-dom";
 import { type UserRole, type FormData } from "../../types";
 import { useDraftAutoSave } from "../../hooks/useDraftAutoSave";
 import { loadDraft } from "../../utils/localStorage";
@@ -8,9 +7,7 @@ import Step2 from "./Step2";
 import "./WizardPage.css";
 
 function WizardPage() {
-  const [searchParams] = useSearchParams();
-  const role = (searchParams.get("role") || "admin") as UserRole;
-
+  const [role, setRole] = useState<UserRole>("admin");
   const [currentStep, setCurrentStep] = useState(role === "admin" ? 1 : 2);
   const [formData, setFormData] = useState<FormData>(() => {
     const savedDraft = loadDraft(role);
@@ -51,12 +48,37 @@ function WizardPage() {
     }
   };
 
+  const handleRoleToggle = () => {
+    const newRole: UserRole = role === "admin" ? "ops" : "admin";
+
+    // Load draft for the new role
+    const savedDraft = loadDraft(newRole);
+    setFormData(savedDraft || { basicInfo: {}, details: {} });
+
+    // Reset to appropriate step
+    setCurrentStep(newRole === "admin" ? 1 : 2);
+    setRole(newRole);
+  };
+
   return (
     <div className="wizard-page">
       <div className="wizard-page__header">
         <h1 className="wizard-page__title">Employee Registration</h1>
-        <div className="wizard-page__role-badge">
-          Role: <strong>{role.toUpperCase()}</strong>
+        <div className="wizard-page__role-toggle">
+          <button
+            type="button"
+            className={`wizard-page__role-btn ${role === "admin" ? "active" : ""}`}
+            onClick={() => role !== "admin" && handleRoleToggle()}
+          >
+            Admin
+          </button>
+          <button
+            type="button"
+            className={`wizard-page__role-btn ${role === "ops" ? "active" : ""}`}
+            onClick={() => role !== "ops" && handleRoleToggle()}
+          >
+            Ops
+          </button>
         </div>
       </div>
 
